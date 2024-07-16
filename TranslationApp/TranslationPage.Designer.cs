@@ -54,7 +54,7 @@
             this.CmbTargetLang.FormattingEnabled = true;
             this.CmbTargetLang.IntegralHeight = false;
             this.CmbTargetLang.Location = new System.Drawing.Point(596, 85);
-            this.CmbTargetLang.Margin = new System.Windows.Forms.Padding(5);
+            this.CmbTargetLang.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.CmbTargetLang.MaxDropDownItems = 5;
             this.CmbTargetLang.Name = "CmbTargetLang";
             this.CmbTargetLang.Size = new System.Drawing.Size(236, 33);
@@ -62,7 +62,8 @@
             // 
             // TranslationTimer
             // 
-            this.TranslationTimer.Interval = 500;
+            this.TranslationTimer.Interval = 3000;
+            this.TranslationTimer.Tick += new System.EventHandler(this.TranslationTimer_Tick);
             // 
             // circularBtnBack
             // 
@@ -114,7 +115,7 @@
             this.TxtOutput.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold);
             this.TxtOutput.ForeColor = System.Drawing.SystemColors.Window;
             this.TxtOutput.Location = new System.Drawing.Point(596, 103);
-            this.TxtOutput.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtOutput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtOutput.Multiline = true;
             this.TxtOutput.Name = "TxtOutput";
             this.TxtOutput.Size = new System.Drawing.Size(482, 340);
@@ -125,7 +126,7 @@
             // 
             this.roundedPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(60)))), ((int)(((byte)(104)))));
             this.roundedPanel2.Location = new System.Drawing.Point(576, 58);
-            this.roundedPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.roundedPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.roundedPanel2.Name = "roundedPanel2";
             this.roundedPanel2.Size = new System.Drawing.Size(520, 401);
             this.roundedPanel2.TabIndex = 6;
@@ -136,7 +137,7 @@
             this.roundedPanel1.Controls.Add(this.CmbSourceLang);
             this.roundedPanel1.Controls.Add(this.TxtInput);
             this.roundedPanel1.Location = new System.Drawing.Point(26, 58);
-            this.roundedPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.roundedPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.roundedPanel1.Name = "roundedPanel1";
             this.roundedPanel1.Size = new System.Drawing.Size(520, 401);
             this.roundedPanel1.TabIndex = 5;
@@ -152,7 +153,7 @@
             this.CmbSourceLang.FormattingEnabled = true;
             this.CmbSourceLang.IntegralHeight = false;
             this.CmbSourceLang.Location = new System.Drawing.Point(18, 27);
-            this.CmbSourceLang.Margin = new System.Windows.Forms.Padding(5);
+            this.CmbSourceLang.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.CmbSourceLang.MaxDropDownItems = 5;
             this.CmbSourceLang.Name = "CmbSourceLang";
             this.CmbSourceLang.Size = new System.Drawing.Size(236, 33);
@@ -164,14 +165,14 @@
             this.TxtInput.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold);
             this.TxtInput.ForeColor = System.Drawing.SystemColors.Window;
             this.TxtInput.Location = new System.Drawing.Point(18, 45);
-            this.TxtInput.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtInput.Multiline = true;
             this.TxtInput.Name = "TxtInput";
             this.TxtInput.Size = new System.Drawing.Size(482, 340);
             this.TxtInput.TabIndex = 7;
             this.TxtInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Form1
+            // TranslationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -185,7 +186,7 @@
             this.Controls.Add(this.roundedPanel2);
             this.Controls.Add(this.roundedPanel1);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.Name = "Form1";
+            this.Name = "TranslationPage";
             this.Text = "Form1";
             this.roundedPanel1.ResumeLayout(false);
             this.roundedPanel1.PerformLayout();

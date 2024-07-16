@@ -13,9 +13,16 @@ namespace TranslationApp
         private const string MyMemoryTranslateUrl = "https://api.mymemory.translated.net/get";
         private readonly Dictionary<string, string> LanguageCodes = new Dictionary<string, string>
 {
+    { "Afrikaans", "af" },
+    { "Albanian", "sq" },
+    { "Amharic", "am" },
     { "Arabic", "ar" },
+    { "Armenian", "hy" },
+    { "Azerbaijani", "az" },
     { "Bengali", "bn" },
+    { "Bosnian", "bs" },
     { "Bulgarian", "bg" },
+    { "Catalan", "ca" },
     { "Chinese (Simplified)", "zh-CN" },
     { "Chinese (Traditional)", "zh-TW" },
     { "Croatian", "hr" },
@@ -26,8 +33,10 @@ namespace TranslationApp
     { "Estonian", "et" },
     { "Finnish", "fi" },
     { "French", "fr" },
+    { "Georgian", "ka" },
     { "German", "de" },
     { "Greek", "el" },
+    { "Gujarati", "gu" },
     { "Hebrew", "he" },
     { "Hindi", "hi" },
     { "Hungarian", "hu" },
@@ -36,14 +45,20 @@ namespace TranslationApp
     { "Irish", "ga" },
     { "Italian", "it" },
     { "Japanese", "ja" },
+    { "Kannada", "kn" },
+    { "Kazakh", "kk" },
     { "Korean", "ko" },
     { "Latvian", "lv" },
     { "Lithuanian", "lt" },
     { "Malay", "ms" },
     { "Maltese", "mt" },
+    { "Marathi", "mr" },
+    { "Mongolian", "mn" },
     { "Norwegian", "no" },
+    { "Persian", "fa" },
     { "Polish", "pl" },
     { "Portuguese", "pt" },
+    { "Punjabi", "pa" },
     { "Romanian", "ro" },
     { "Russian", "ru" },
     { "Serbian", "sr" },
@@ -51,6 +66,8 @@ namespace TranslationApp
     { "Slovenian", "sl" },
     { "Spanish", "es" },
     { "Swedish", "sv" },
+    { "Tamil", "ta" },
+    { "Telugu", "te" },
     { "Thai", "th" },
     { "Turkish", "tr" },
     { "Ukrainian", "uk" },
@@ -66,12 +83,9 @@ namespace TranslationApp
             InitializeComponent();
             PopulateLanguageComboBoxes();
 
-            // Initialize timer
-            TranslationTimer.Interval = 3000;
             TranslationTimer.Tick += TranslationTimer_Tick;
             TranslationTimer.Start();
 
-            // Initialize SpeechSynthesizer
             speechSynthesizer = new SpeechSynthesizer();
         }
 
@@ -88,17 +102,18 @@ namespace TranslationApp
         }
 
         private async void TranslationTimer_Tick(object sender, EventArgs e)
-        {
-            string inputText = TxtInput.Text.Trim();
-            if (string.IsNullOrEmpty(inputText) || CmbSourceLang.SelectedItem == null || CmbTargetLang.SelectedItem == null)
-                return;
+        {        
+                string inputText = TxtInput.Text.Trim();
+                if (string.IsNullOrEmpty(inputText) || CmbSourceLang.SelectedItem == null || CmbTargetLang.SelectedItem == null)
+                    return;
 
-            string sourceLangCode = LanguageCodes[CmbSourceLang.SelectedItem.ToString()];
-            string targetLangCode = LanguageCodes[CmbTargetLang.SelectedItem.ToString()];
+                string sourceLangCode = LanguageCodes[CmbSourceLang.SelectedItem.ToString()];
+                string targetLangCode = LanguageCodes[CmbTargetLang.SelectedItem.ToString()];
 
-            string translatedText = await TranslateText(inputText, sourceLangCode, targetLangCode);
-            TxtOutput.Text = translatedText;
+                string translatedText = await TranslateText(inputText, sourceLangCode, targetLangCode);
+                TxtOutput.Text = translatedText;            
         }
+
 
         private async Task<string> TranslateText(string text, string sourceLangCode, string targetLangCode)
         {
@@ -116,16 +131,13 @@ namespace TranslationApp
                     string responseBody = await response.Content.ReadAsStringAsync();
                     JObject jsonResponse = JObject.Parse(responseBody);
 
-                    // Check for errors in the response
                     if (jsonResponse["responseStatus"].ToString() != "200")
                     {
                         throw new Exception("Translation error: " + jsonResponse["responseDetails"]);
                     }
 
-                    // Extract and return translated text
                     string translatedText = jsonResponse["responseData"]["translatedText"].ToString();
 
-                    // Handle case where no equivalent translation is found 
                     if (translatedText.Equals(text, StringComparison.OrdinalIgnoreCase))
                     {
                         return "No equivalent translation found";
@@ -170,5 +182,6 @@ namespace TranslationApp
             form2.Show();
             this.Close();
         }
+
     }
 }
